@@ -9,7 +9,7 @@
  -响应式适配各设备
  -支持富文本编辑
  
- ###如何使用
+ ### 如何使用
  ``` bash
  npm install
  npm start
