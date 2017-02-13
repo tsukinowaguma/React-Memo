@@ -29806,7 +29806,7 @@
 						init(memos);
 					}
 					//支持fetch则获取JSON里的信息
-					fetch("../init.json").then(function (response) {
+					fetch("./init.json").then(function (response) {
 						if (response.status !== 200) {
 							console.log("存在一个问题，状态码为：" + response.status);
 						}
