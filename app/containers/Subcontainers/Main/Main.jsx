@@ -4,36 +4,43 @@ import RevEditor from '../Editor/RevEditor';
 
 class Main extends Component {
 	state = {
-		editor:false,
-		revindex:-1
+		editor:false,	//子组件修改状态
+		revindex:-1		//子组件触动事件的序号
 	}
 	onDel(index){
+		//当子Memos组件触动删除事件时回调给父组件
 		this.props.memos.splice(index, 1);
 		this.props.onDelRev(this.props.memos);
 		this.props.setStorage();
 		this.props.memoMoniter();
 	}
 	getRevIndex(index){
+		//当子组件触动修改事件时改变state
 		this.setState({
 			editor:true,
 			revindex:index
 		});
 	}
-	setRevMemo(revItem){
+	setRevMemo(revItem){	//获取子组件修改后传递过来的对象信息
 		let revMemos =this.props.memos;
 		let index = this.state.revindex;
+		//改变修改的信息，将生成的新memos对象回调给父组件
 		revMemos[index].info.title =revItem.title;
 		revMemos[index].info.context =revItem.context;
 		this.props.onDelRev(revMemos);
 	}
 	editOff(){
+		//关闭编辑状态
 		this.setState({
 			editor:false
 		})		
 	}
-	handleRev(revItem){
+	handleRev(revItem){//修改事件的集合
+		//修改后的对象回调给父组件
 		this.setRevMemo(revItem);
+		//保存给localStorage
 		this.props.setStorage();
+		//关闭编辑状态
 		this.editOff();
 	}
 	render() {

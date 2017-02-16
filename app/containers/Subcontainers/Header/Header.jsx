@@ -6,46 +6,51 @@ class Header extends Component {
 		edit :false
 	}
 	edit(){
+		//开启新建编辑状态
 		this.setState({
 			edit:true
 		});
 	}
 	update(newItem){
+		//回调给父组件新增的组件的信息对象
 		this.props.onAdd(newItem);
 		this.props.memoMoniter();
 	}
 	editOff(){
+		//关闭编辑状态
 		this.setState({
 			edit:false
 		});
 	}
-	allFilter(){
+	allFilter(){//当点击“全部”时回调给父组件过滤显示
 		this.props.natureFilter('all');
 	}
-	studyFilter(){
+	studyFilter(){//当点击“学习”时回调给父组件过滤显示
 		this.props.natureFilter('study');
-
 	}	
-	workFilter(){
+	workFilter(){//当点击“工作”时回调给父组件过滤显示
 		this.props.natureFilter('work');
 	
 	}
-	lifeFilter(){
+	lifeFilter(){//当点击“生活”时回调给父组件过滤显示
 		this.props.natureFilter('life');
 
 	}
-	handleOrder(){
+	handleOrder(){ 
 		this.props.orderChange(true);
 	}
 	handleReverse(){
 		this.props.orderChange(false);
 	}
-	handleNew(newItem){
+	handleNew(newItem){//新建事件的集合
+		//回调给父组件新增的组件信息对象
 		this.update(newItem);
+		//保存给localStorage
 		this.props.setStorage();
+		//关闭编辑状态
 		this.editOff();
 	}
-	showAmount(){
+	showAmount(){//显示组件类型数量
 		let filter = this.props.filter;
 		if(filter == 'study'){
 			return <a>学习<span className='amount'>
@@ -87,7 +92,7 @@ class Header extends Component {
 						</li>
 					<li className='select drop'>
 						<a>  
-							{
+							{	
 								this.props.order? '按时间顺序排序' : '按时间逆序排序'
 							}  
 						</a>
@@ -102,11 +107,12 @@ class Header extends Component {
 					</li>
 					</ul>
 				</div>
-				{
+				{	//覆盖面
 					this.state.edit? <div className='cover'></div> : ''
 				}
-				{this.state.edit?
-					<Editor handleNew={(newItem) => this.handleNew(newItem)} 
+				{	//处于编辑状态则打开编辑器
+					this.state.edit?
+						<Editor handleNew={(newItem) => this.handleNew(newItem)} 
 						editOff={() => this.editOff()} /> : ''
 				}
 			</div>

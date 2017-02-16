@@ -32,6 +32,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' })
+    new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
+    new webpack.optimize.UglifyJsPlugin({compress:{warnings: false}})
   ]
 };
