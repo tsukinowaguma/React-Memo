@@ -16,7 +16,6 @@ li{
 body{
 	background-image: url(img/pixels.png);
 	width: 100%;
-	min-width: 1180px;
 	position: relative;
 	line-height: 1.4;
 }
@@ -36,7 +35,7 @@ body{
 	margin: 0 auto;
 	width: 1180px;
 	margin-top: 15px;
-	min-height: 880px;
+	min-height: 700px;
 }
 
 
@@ -100,6 +99,10 @@ body{
 	align-items: baseline;
 }
 
+.memo-info span{
+	white-space: nowrap;
+}
+
 .memo-context{
 	border: 1px solid #f8f8f8;
 	line-height: 1.4;
@@ -144,7 +147,7 @@ body{
 #selects{
 	display: flex;
 	height: 100%;
-	width: 35%;
+	width: 400px;
 }
 
 .select{
@@ -156,7 +159,7 @@ body{
 }
 
 .select:first-child{
-	width: 80%;
+	width: 50%;
 }
 
 
@@ -328,3 +331,27 @@ textarea.form-control{
 	opacity: 0.5;
 }
 
+@media screen and (min-width:990px) and (max-width:1200px){
+	.main{width:980px;min-height: 600px;}
+	.header-container{width: 950px;}
+	.memo-context{width: 210px; height: 210px;}
+	.memo{height: 290px;}
+}
+
+@media screen and (min-width:765px) and (max-width:990px){
+	.main{width:760px;min-height: 600px;}
+	.header-container{width: 700px;}
+	.memo-context{width: 215px;height: 215px;}
+	.memo{height: 300px;}
+	.memo-container{width: 33%;}
+}
+
+@media screen and  (max-width:765px){
+	body{min-width: 484px;}
+	.main{width:100%;min-height: 400px;}
+	.header-container{width: 100%;}
+	.memo-context{width: 100%;height: 80%;}
+	.memo{height: 300px;}
+	.memo-container{width: 50%;padding: 1px;}
+	#selects{width: 350px;}
+}
