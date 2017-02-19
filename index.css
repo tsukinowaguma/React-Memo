@@ -458,6 +458,7 @@ textarea.form-control{
 		-webkit-box-direction: normal;
 		    -ms-flex-direction: column;
 		        flex-direction: column;
+		background-color: blue;
 	}
 	.memo-context{
 		width: 100%;
@@ -479,7 +480,7 @@ textarea.form-control{
 		background-color: white;
 		border-top : 1px solid #e7e7e7;
 		border-bottom : 2px solid #e7e7e7;
-		z-index: 1;
+		z-index: 2;
 		max-height: 340px;
 		height: auto;
 		padding-bottom: 7px;
