@@ -108,7 +108,7 @@ class Header extends Component {
 									<span className="icon-bar"></span>
 								</button> : ''
 						}
-						</div>
+					</div>
 					{
 						this.state.menuShow >= 0 || !this.props.isMobile ?(
 							<ul id='selects'>
