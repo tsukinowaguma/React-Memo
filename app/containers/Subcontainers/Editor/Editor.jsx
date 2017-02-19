@@ -3,6 +3,16 @@ import ReactDOM from 'react-dom'
 
 
 class Editor extends Component {
+	state={
+		titlevalue:'',
+		textvalue:''
+	}
+	handleText(e){
+		//使设定input的value时能改变
+		e.target.type == 'text'? 	
+			this.setState({titlevalue:e.target.value}) :
+			this.setState({textvalue:e.target.value}) ;
+	}
 	handleAdd(){	//确认新建笔记时
 		//显示当前时间
 		const date = new Date();
@@ -19,10 +29,8 @@ class Editor extends Component {
       		  return o.value;
    			})[0];
    		//获取标题输入框和内容输入框的值
-		let [title,context] = [ReactDOM.findDOMNode(this.refs.rtitle).value,
-								ReactDOM.findDOMNode(this.refs.rtext).value]
-		const newItem = {title:title,
-						 context:context,
+		const newItem = {title:this.state.titlevalue,
+						 context:this.state.textvalue,
 						 nature:nature,
 						 time:time};
 		this.props.handleNew(newItem);
@@ -35,14 +43,16 @@ class Editor extends Component {
 			<div className='editor'>
 				<form>
 					<div className='editor-header'>
-						<input type="text" ref="rtitle" placeholder = "标题" className='form-control' />
+						<input type="text" value={this.state.titlevalue} onChange={(e) => this.handleText(e)}
+							placeholder = "标题" className='form-control' />
 						<select name="nature" ref='rnature' className='form-control' >
 							<option value="study" >学习</option>
 							<option value="work" >工作</option>
 							<option value="life" >生活</option>
 						</select>
 					</div>
-					<textarea  ref="rtext" placeholder = "内容" className='form-control' />
+					<textarea  value={this.state.textvalue} placeholder = "内容" className='form-control' 
+					onChange={(e) => this.handleText(e)} />
 					<div className='editor-btt'>
 						<span onClick={() => this.handleAdd()} >确认</span>
 						<span onClick={() => this.handleCancel()} >取消</span>

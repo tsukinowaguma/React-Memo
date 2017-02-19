@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { markdown } from 'markdown';
 
 class Memos extends Component {
 	handleDel(){ //点击删除时
@@ -12,11 +12,13 @@ class Memos extends Component {
 		//回调给父组件序号
 		this.props.getRevIndex(this.props.index);
 	}
+	/*
 	getPara(){
 		//将字符串根据换行符来切割成数组以便加上<p>标签来换行
 		let paras = this.props.prop.info.context.split('\n'); //Array
 		return paras;
 	}
+	*/
 	getCNNature(){ //将类型变成中文
 		let nature = this.props.prop.info.nature;
 		let cn_nature;
@@ -32,9 +34,11 @@ class Memos extends Component {
 	render(){
 		return(
 			<div className='memo-container'>
-				<div className='memo'>
+				<div className='memo' style={{height:this.props.memoHeight}} >
 					<div className= 'memo-header'>
-						<span className='memo-title'>{this.props.prop.info.title}</span>
+						<span className='memo-title' title = {this.props.prop.info.title}>
+							{this.props.prop.info.title}
+						</span>
 						<div className='memo-tools'>
 							{	//如果整个组件在编辑状态则不触动组件的删除事件防止误操作
 								this.props.edit? <span className='del'>删除</span>
@@ -51,14 +55,13 @@ class Memos extends Component {
 						<span>{this.props.prop.info.time}</span>		
 						<span>分类:{this.getCNNature()}</span>
 					</div>
-					<div>
-						<div className='memo-context'>
-							{	//遍历根据换行符切割成的数组加上p标签
-								this.getPara().map((item) => <p>{item}</p>)
-							}
-						</div>
+					<div className='memo-context markdown-body' 
+						dangerouslySetInnerHTML={{__html:markdown.toHTML(this.props.prop.info.context)}} >
+						{	//遍历根据换行符切割成的数组加上p标签
+							//this.getPara().map((item) => <p>{item}</p>)
+						}
 					</div>
-			</div>
+				</div>
 			</div>
 		);
 	}

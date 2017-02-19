@@ -2,8 +2,11 @@
 
 *{
 	box-sizing: border-box;
-	margin: 0;
+}
+
+body, div, dl, dt, dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,select,img{
 	padding: 0;
+	margin: 0;
 }
 
 li{
@@ -13,7 +16,6 @@ li{
 body{
 	background-image: url(img/pixels.png);
 	width: 100%;
-	min-width: 1180px;
 	position: relative;
 	line-height: 1.4;
 }
@@ -33,7 +35,7 @@ body{
 	margin: 0 auto;
 	width: 1180px;
 	margin-top: 15px;
-	min-height: 880px;
+	min-height: 600px;
 }
 
 
@@ -45,6 +47,7 @@ body{
 
 
 .memo{
+	position: relative;
 	width: 100%;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	border: 1px solid #bdbdbd;
@@ -54,13 +57,27 @@ body{
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
+	transition:0.3s;
 }
 
 .memo:hover{
 	border:1px solid #589EF6;
-	box-shadow: 5px 10px 10px #888888;
+	box-shadow: -1px 1px 10px #888888;
 }
 
+.memo:hover.memo:before{
+	content: '';
+	display: block;
+	position: absolute;
+	left: -8px;
+	top: -8px;
+	width:24px;
+	height: 24px;
+	border-radius: 50%;
+	background: #4dabf5 url('img/icon-hover.svg') no-repeat 3px 3px;
+	background-size: 18px 18px;
+	transition:all 0.2s ease-in-out;
+}
 
 .memo-header{
 	width: 100%;
@@ -75,6 +92,7 @@ body{
 .memo-title{
 	display: inline-block;
 	text-overflow: ellipsis;
+	white-space: nowrap;
 	max-width: calc( 100% - 80px );
 	overflow: hidden;
 	border-bottom: 1px solid black;
@@ -95,6 +113,10 @@ body{
 	justify-content: space-between;
 	font-size: .8rem;
 	align-items: baseline;
+}
+
+.memo-info span{
+	white-space: nowrap;
 }
 
 .memo-context{
@@ -141,7 +163,7 @@ body{
 #selects{
 	display: flex;
 	height: 100%;
-	width: 35%;
+	width: 400px;
 }
 
 .select{
@@ -150,10 +172,11 @@ body{
 	position: relative;
 	cursor: pointer;
 	transition :all 0.3s;
+	-moz-transition:all 0.3s;
 }
 
 .select:first-child{
-	width: 80%;
+	width: 50%;
 }
 
 
@@ -200,28 +223,26 @@ body{
 }
 
 .drop-menu{
+	display: flex;
+	flex-direction: column;
 	font-size: 14px;
 	top:100%;
 	right: 0;
 	left: auto;
 	width: 110%;
-	display: none;
 	background-color: white;
 	position: absolute;
 	border:1px solid rgba(0,0,0,0.15);
 	text-align: left;
 	border-radius: 5px;
 	box-shadow: 5px 5px 5px 5px #888888;
+	z-index: 1;
 }
 
 .select:hover{
 	background: #e7e7e7;
 }
 
-.drop:hover .drop-menu {
-	display: flex;
-	flex-direction: column;
-}
 
 .drop-menu a{
 	display: flex;
@@ -247,6 +268,7 @@ body{
 	border: 1px solid #f8f8f8;
 	border-radius: 3px;
 	box-shadow: 0 0 6px 0 #f8f8f8;
+	animation:0.3s edit ;
 }
 
 .editor form{
@@ -316,12 +338,139 @@ textarea.form-control{
 
 .cover{
 	z-index: 2;
-	position: absolute;
+	position: fixed;
 	width: 100%;
-	height: 100%;
 	background:black;
 	top:0;
 	left: 0;
 	opacity: 0.5;
+	animation:0.3s cover forwards;
 }
 
+
+
+@keyframes cover {
+	from{opacity: 0;}
+	to{opacity: 0.5;}
+}
+
+@keyframes edit {
+	from{opacity: 0;}
+	to{opacity: 1;}
+}
+
+@media screen and (min-width:990px) and (max-width:1200px){
+	.main{width:980px;min-height: 600px;}
+	.header-container{width: 950px;}
+	.memo-context{width: 210px; height: 210px;}
+	.memo{height: 290px;}
+}
+
+@media screen and (min-width:765px) and (max-width:990px){
+	.main{width:760px;min-height: 600px;}
+	.header-container{width: 700px;}
+	.memo-context{width: 215px;height: 215px;}
+	.memo{height: 300px;}
+	.memo-container{width: 33%;}
+}
+
+@media screen and  (max-width:765px){
+	.main{
+		width:100%;
+		min-height: 300px;
+	}
+	.header-container{
+		width: 100%;
+		height: 100%;
+		flex-direction: column;
+	}
+	.memo-context{
+		width: 100%;
+		height: 80%;
+	}
+	.memo{
+		height: 300px;
+	}
+	.memo-container{
+		width: 50%;
+		padding: 1px;
+	}
+	#selects{
+		width: 100%;
+		flex-direction: column;
+		background: rgba(248,248,248,1);
+		border-top : 1px solid #e7e7e7;
+		border-bottom : 2px solid #e7e7e7;
+		z-index: 1;
+		max-height: 340px;
+		height: auto;
+		padding-bottom: 7px;
+	}
+	.select{
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.select:focus{
+		background-color: #e7e7e7;
+	}
+	.select:first-child{
+		width: 100%;
+	}
+	.select >a {
+		display: block;
+		position: static;
+		transform:none;
+		text-align: left;
+		margin: 15px 10px;
+	}
+	.drop-menu{
+		width: 100%;
+		position: static;
+		box-shadow: none;
+		background-color:rgba(248,248,248,0.9);
+		border: 0px;
+		border-radius: 0px;
+		font-size: 14px;
+	}
+	.drop-menu a{
+		opacity: 0.7;
+	}
+	.drop-menu a:hover{
+		background-color: transparent;
+		opacity: 1;
+	}
+	#header{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 10px;
+	}
+	.icon-bar {
+		display: block;
+		width: 22px;
+		height: 2px;
+		border-radius: 1px;
+   		background-color: #888;
+   		margin: 0 auto;
+   		margin-top: 4px;
+	}
+	.icon-bar:first-child{
+		margin-top:0;
+	}
+	#menu{
+		display: block;
+		padding: 5px 10px 5px;
+		background-color: transparent;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	#menu:hover{
+		background: #e7e7e7;
+	}
+	#menu:focus{
+		background: #e7e7e7;
+	}
+}

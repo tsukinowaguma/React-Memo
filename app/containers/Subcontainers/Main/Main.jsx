@@ -55,12 +55,13 @@ class Main extends Component {
 				 				<Memos  prop={item} index={index}  
 				 				onDel={(index) => this.onDel(index)} 
 				 				getRevIndex={(index) => this.getRevIndex(index)} 
-				 				edit={this.state.editor}  /> : '' 
+				 				edit={this.state.editor}  memoHeight={this.props.memoHeight} /> : '' 
 				 		})
 					}
 				</div>
 				{
-					this.state.editor? <div className='cover'></div> : ''
+					this.state.editor? 
+						<div className='cover' style={{height:window.innerHeight +'px'}}></div> : ''
 				}
 				{
 						//如果处于编辑状态则生成Memo修改编辑器

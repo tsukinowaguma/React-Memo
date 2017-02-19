@@ -7,9 +7,16 @@ export default class App extends Component {
 		order:true,		//排序方法，true为时间顺序,false为时间逆序
 		background:{top:0, left:0},		//背景图片位置信息
 		natureNum:{study:0, work:0, life:0}, //用于存储笔记类型（学习、工作、生活）的数量 
-		filter:'all'		//类型过滤方式，选值为'all'、'study'、'work'、'life'
+		filter:'all',		//类型过滤方式，选值为'all'、'study'、'work'、'life'
+		isMobile:false,	//检测是否为手机（小屏幕）
+		memoHeight:'' 	//memo组件的高度
 	}
-	componentWillMount(){ //初始化，让state初始化为localStroage所保存的state 
+	componentWillMount(){
+		//检测是否为手机端（小屏幕）
+		this.setIsMobile();
+		window.onresize = () => this.setIsMobile();
+	}
+	componentDidMount(){ //初始化，让state初始化为localStroage所保存的state 
 		let str = window.localStorage.getItem('memos');
 		let order = window.localStorage.getItem('order');
 		let memos;
@@ -46,6 +53,7 @@ export default class App extends Component {
 			)
 			.catch(function(err){
 			    console.log("Fetch错误:"+err);
+			    return
 			});
 		}
 	}
@@ -54,14 +62,35 @@ export default class App extends Component {
 		let [study, work, life] =[0, 0, 0];
 		for(let i=0; i<memos.length ; i++){
 			memos[i].visible =true;
-			if(memos[i].info.nature === 'work') work++;	
-				else if(memos[i].info.nature === 'life')life++;
-				else if(memos[i].info.nature === 'study')study++;
+			switch(memos[i].info.nature){
+				case 'work': work++;break;
+				case 'life': life++;break;
+				case 'study': study++;break;
 			}
+		}
 		this.setState({
 			memos:memos,
 			natureNum:{study:study, work:work, life:life}
 		});		
+	}
+	setIsMobile(){
+		//检测是否为手机(<765px) 若为手机则让memo的高度随着屏幕宽度变化
+		let winWidth,isMobile,height;
+		if (window.innerWidth)
+			winWidth = window.innerWidth;
+		else if ((document.body) && (document.body.clientWidth))
+			winWidth = document.body.clientWidth;
+		if (winWidth < 765) {
+			isMobile = true;
+			height = winWidth * 0.65 ;
+		}else {
+			isMobile = false;
+			height = '';
+		}	
+		this.setState({
+			isMobile:isMobile,
+			memoHeight:height
+		});
 	}
 	setStorage(){ //储存此时的Memo组件以及组件顺序
 		let memos = this.state.memos;
@@ -76,17 +105,22 @@ export default class App extends Component {
 			//遍历memos 过滤掉非选择的类型 visible=false则隐藏组件
 		for(let i=0; i<memos.length ; i++){ 
 			//	只有选择的类型与Memo组件的类型相同才显示
-			if (nature === 'all'){		
-				memos[i].visible = true;
-			}else if(nature === 'study'){
-				memos[i].info.nature === 'study' ? 
-					memos[i].visible = true : memos[i].visible=false ;
-			}else if(nature === 'work'){
-				memos[i].info.nature === 'work' ? 
-					memos[i].visible = true : memos[i].visible=false ;
-			}else if(nature === 'life'){ 
-				memos[i].info.nature === 'life' ? 
-					memos[i].visible = true : memos[i].visible=false ;
+			switch (nature ){	
+				case 'all':{
+					memos[i].visible = true;
+				}break;
+				case 'study':{
+					memos[i].info.nature === 'study' ? 
+						memos[i].visible = true : memos[i].visible=false ;
+				}break;
+				case 'work':{
+					memos[i].info.nature === 'work' ? 
+						memos[i].visible = true : memos[i].visible=false ;
+				}break;
+				case 'life':{
+					memos[i].info.nature === 'life' ? 
+						memos[i].visible = true : memos[i].visible=false ;
+				}break;
 			}
 		}
 		this.setState({
@@ -99,9 +133,11 @@ export default class App extends Component {
 		let [study, work, life] =[0, 0, 0];
 		let memos = this.state.memos;
 		for(let i=0; i<memos.length ; i++){
-			if(memos[i].info.nature === 'work') work++;
-				else if(memos[i].info.nature === 'life')life++;
-				else if(memos[i].info.nature === 'study')study++;
+			switch(memos[i].info.nature){
+				case 'work': work++;break;
+				case 'life': life++;break;
+				case 'study': study++;break;
+			}
 		}
 		this.setState({
 			natureNum:{study:study, work:work ,life:life}
@@ -125,6 +161,7 @@ export default class App extends Component {
 			memos:newMemos
 		});
 	}
+	/*
 	handleMove(e){	//用于控制背景图片移动 因为消耗CPU暂时不用
 		let left = 40 * e.clientX/document.body.clientWidth;
 		let top = 40 * e.clientY/document.body.clientHeight;
@@ -132,6 +169,7 @@ export default class App extends Component {
 			background:{top:top, left:left}
 		});
 	}
+	*/
 	orderChange(order){	//当按时间逆序排序则将数组倒过来
 		let memos = this.state.memos;
 		if(this.state.order === true){
@@ -153,23 +191,27 @@ export default class App extends Component {
 		}
 	}
 	render(){
+		/*
 		let bgstyle = {	//背景位置对象
 			backgroundPosition:this.state.background.left +'px' +
 			' ' +this.state.background.top +'px'
 		};
+		*/
 		return(
-			<div className='app'  style={bgstyle}>
+			<div className='app' >
 				<Header onAdd={(newItem) => this.handleAdd(newItem)} filter={this.state.filter}
 					 natureNum={this.state.natureNum} amount={this.state.memos.length} 
 					 memoMoniter={() => this.memoMoniter()} 
 					 natureFilter={(nature) => this.natureFilter(nature)} 
 					 orderChange={(order) => this.orderChange(order)} order={this.state.order} 
-					 setStorage={() => this.setStorage()} />
+					 setStorage={() => this.setStorage()} 
+					 isMobile = {this.state.isMobile}/>
 
 				<Main memos={this.state.memos} 
 					onDelRev={(newMemo) => this.handleChange(newMemo)} 
 					memoMoniter={() => this.memoMoniter()} 
-					setStorage={() => this.setStorage()} />
+					setStorage={() => this.setStorage()} 
+					memoHeight = {this.state.memoHeight}/ >
 			</div>
 		);
 	}
