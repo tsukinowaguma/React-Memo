@@ -30,10 +30,7 @@ body{
 }
 
 .main{
-	-ms-flex-wrap:wrap;
-	    flex-wrap:wrap;
-	display: -webkit-box;
-	display: -ms-flexbox;
+	flex-wrap:wrap;
 	display: flex;
 	margin: 0 auto;
 	width: 1180px;
@@ -58,14 +55,8 @@ body{
 	border-radius: 5px;
 	background-color: white;
 	padding: 10px;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	-webkit-transition: 0.3s;
+	flex-direction: column;
 	transition:0.3s;
 }
 
@@ -85,22 +76,15 @@ body{
 	border-radius: 50%;
 	background: #4dabf5 url('img/icon-hover.svg') no-repeat 3px 3px;
 	background-size: 18px 18px;
-	-webkit-transition: all 0.2s ease-in-out;
 	transition:all 0.2s ease-in-out;
 }
 
 .memo-header{
 	width: 100%;
 	height: 150px;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-	-webkit-box-align: baseline;
-	    -ms-flex-align: baseline;
-	        align-items: baseline;
+	justify-content: space-between;
+	align-items: baseline;
 	height: 3rem;
 
 }
@@ -125,16 +109,10 @@ body{
 }
 
 .memo-info{
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
+	justify-content: space-between;
 	font-size: .8rem;
-	-webkit-box-align: baseline;
-	    -ms-flex-align: baseline;
-	        align-items: baseline;
+	align-items: baseline;
 }
 
 .memo-info span{
@@ -166,21 +144,14 @@ body{
 	width: 1162px;
 	height: 100%;
 	margin: 0 auto;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align:center;
-	    -ms-flex-align:center;
-	        align-items:center;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
+	align-items:center;
+	justify-content: space-between;
 }
 
 #total-title{
 	cursor: default;
 	opacity: 0.6;
-	-webkit-transition: opacity 0.15s;
 	transition:opacity 0.15s;		
 }
 
@@ -190,8 +161,6 @@ body{
 }
 
 #selects{
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
 	height: 100%;
 	width: 400px;
@@ -202,7 +171,6 @@ body{
 	text-align: center;
 	position: relative;
 	cursor: pointer;
-	-webkit-transition: all 0.3s;
 	transition :all 0.3s;
 	-moz-transition:all 0.3s;
 }
@@ -227,8 +195,7 @@ body{
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	-webkit-transform: translate(-50%,-50%);
-	        transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
 }
 
 .drop > a:after{
@@ -256,13 +223,8 @@ body{
 }
 
 .drop-menu{
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
+	flex-direction: column;
 	font-size: 14px;
 	top:100%;
 	right: 0;
@@ -283,15 +245,9 @@ body{
 
 
 .drop-menu a{
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	padding: 10px 5px 5px 15px;
 
@@ -306,34 +262,23 @@ body{
 	top: 50%;
 	left: 50%;
 	z-index: 3;
-	-webkit-transform: translate(-50%,-50%);
-	        transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
 	background: white;
 	padding: 10px;
 	border: 1px solid #f8f8f8;
 	border-radius: 3px;
 	box-shadow: 0 0 6px 0 #f8f8f8;
-	-webkit-animation:0.3s edit ;
-	        animation:0.3s edit ;
+	animation:0.3s edit ;
 }
 
 .editor form{
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
+	flex-direction: column;
 }
 
 .editor-header{
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
+	justify-content: space-between;
 	width: 100%;
 	text-align: center;
 	padding-bottom: 10px;
@@ -379,12 +324,8 @@ textarea.form-control{
 	margin: 0 auto;
 	padding-top:10px;
 	width: 150px;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
+	justify-content: space-between;
 }
 
 .editor-btt >span{
@@ -403,15 +344,7 @@ textarea.form-control{
 	top:0;
 	left: 0;
 	opacity: 0.5;
-	-webkit-animation:0.3s cover forwards;
-	        animation:0.3s cover forwards;
-}
-
-
-
-@-webkit-keyframes cover {
-	from{opacity: 0;}
-	to{opacity: 0.5;}
+	animation:0.3s cover forwards;
 }
 
 
@@ -419,11 +352,6 @@ textarea.form-control{
 @keyframes cover {
 	from{opacity: 0;}
 	to{opacity: 0.5;}
-}
-
-@-webkit-keyframes edit {
-	from{opacity: 0;}
-	to{opacity: 1;}
 }
 
 @keyframes edit {
@@ -454,11 +382,7 @@ textarea.form-control{
 	.header-container{
 		width: 100%;
 		height: 100%;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
-		background-color: blue;
+		flex-direction: column;
 	}
 	.memo-context{
 		width: 100%;
@@ -473,14 +397,11 @@ textarea.form-control{
 	}
 	#selects{
 		width: 100%;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
-		background-color: blue;
+		flex-direction: column;
+		background-color: rgba(248,248,248,1);
 		border-top : 1px solid #e7e7e7;
 		border-bottom : 2px solid #e7e7e7;
-		z-index: 2;
+		z-index: 1;
 		max-height: 340px;
 		height: auto;
 		padding-bottom: 7px;
@@ -488,7 +409,6 @@ textarea.form-control{
 	.select{
 		display: block;
 		width: 100%;
-		background-color:rgba(248,248,248,1);
 		height: auto;
 	}
 	.select:focus{
@@ -500,8 +420,7 @@ textarea.form-control{
 	.select >a {
 		display: block;
 		position: static;
-		-webkit-transform:none;
-		        transform:none;
+		transform:none;
 		text-align: left;
 		margin: 15px 10px;
 	}
@@ -524,12 +443,8 @@ textarea.form-control{
 	#header{
 		width: 100%;
 		height: 100%;
-		display: -webkit-box;
-		display: -ms-flexbox;
 		display: flex;
-		-webkit-box-pack: justify;
-		    -ms-flex-pack: justify;
-		        justify-content: space-between;
+		justify-content: space-between;
 		padding: 10px;
 	}
 	.icon-bar {
