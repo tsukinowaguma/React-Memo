@@ -111,9 +111,9 @@ class Header extends Component {
 					</div>
 					{
 						this.state.menuShow >= 0 || !this.props.isMobile ?(
-							<ul id='selects'>
-								<li onClick={() => this.edit()} className='select'><a>新建</a></li>
-								<li id='filter-select' className='select drop ' data-index= '1'
+							<div id='selects'>
+								<div onClick={() => this.edit()} className='select'><a>新建</a></div>
+								<div id='filter-select' className='select drop ' data-index= '1'
 										onClick={(e) => this.handleShowMenu(e)} >
 									{this.showAmount()}	
 									{	
@@ -122,8 +122,8 @@ class Header extends Component {
 												filter={(key) => this.handleFilter(key)} 
 												natureNum={this.props.natureNum} />  : ''
 									}
-								</li>
-								<li className='select drop ' data-index='2'
+								</div>
+								<div className='select drop ' data-index='2'
 										onClick={(e) => this.handleShowMenu(e)} >
 									<a>  
 										{this.props.order? '按时间顺序排序' : '按时间逆序排序'}  
@@ -133,8 +133,8 @@ class Header extends Component {
 											<OrderMenu handleOrder={(key) => this.handleOrder(key)}
 												order={this.props.order} />  : ''
 									}
-								</li>
-						</ul> 
+								</div>
+						</div> 
 					) : ''
 				}
 			</div>
