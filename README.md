@@ -17,7 +17,10 @@
 ## 2017-02-19更新  
  - 更新支持了markdown编辑方式
  - 写入响应式并适配移动设备
- 
+
+## 2017-02-24更新
+ - 引入[react-fastclick](https://github.com/JakeSidSmith/react-fastclick)解决移动端onclick的300ms延迟问题
+
 ##  使用
  ``` bash
  npm install
