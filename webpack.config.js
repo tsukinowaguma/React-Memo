@@ -9,6 +9,7 @@ module.exports = {
     inline: true,
     progress: true,
     contentBase: './app',
+    host: '0.0.0.0',
     port: 8080
   },
   entry: [

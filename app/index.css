@@ -382,7 +382,7 @@ textarea.form-control{
 	.header-container{
 		width: 100%;
 		height: 100%;
-		flex-direction: column;
+		display: relative;
 	}
 	.memo-context{
 		width: 100%;
@@ -396,9 +396,12 @@ textarea.form-control{
 		padding: 1px;
 	}
 	#selects{
+		position: absolute;
+		left: 0;
+		top:50px;
 		width: 100%;
 		flex-direction: column;
-		background-color: rgba(248,248,248,1);
+		background-color: white;
 		border-top : 1px solid #e7e7e7;
 		border-bottom : 2px solid #e7e7e7;
 		z-index: 1;
