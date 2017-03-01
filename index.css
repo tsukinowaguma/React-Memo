@@ -176,9 +176,8 @@ body{
 }
 
 .select:first-child{
-	width: 50%;
+	width:70%;
 }
-
 
 .drop{
 	width: 100%;
@@ -197,6 +196,7 @@ body{
 	left: 50%;
 	transform: translate(-50%,-50%);
 }
+
 
 .drop > a:after{
 	content: '';
@@ -239,6 +239,11 @@ body{
 	z-index: 1;
 }
 
+.drop-menu:first-child{
+	width: 130%;
+	height: 110%;
+}
+
 .select:hover{
 	background: #e7e7e7;
 }
@@ -258,7 +263,7 @@ body{
 }
 
 .editor{
-	position: fixed;
+	position: absolute;
 	top: 50%;
 	left: 50%;
 	z-index: 3;
@@ -347,7 +352,97 @@ textarea.form-control{
 	animation:0.3s cover forwards;
 }
 
+.painter{
+	height: 262px;
+	width: 262px;
+	position: relative;
+	border: 1px solid black;
+}
 
+.painter > ul{
+	position: absolute;
+	padding: 0;
+}
+
+.painter > ul.colors{
+	margin-top: 5px;
+	left: 0;
+	top:0;
+}
+
+.painter > ul.colors > li{
+	border:2px solid black;
+	border-radius:50%;
+	width:16px;
+	height:16px;
+	display:inline-block;
+	cursor:pointer;
+	margin-left:3px;
+}
+
+.painter > ul.colors > li:hover{
+	box-shadow: 0 0 6px #222;
+}
+
+.lineController{
+	display: flex;
+	flex-direction:column;
+	align-items:center;
+	bottom: 3px;
+	left: 3px;
+}
+
+.lineController > li{
+	cursor: pointer;
+	background-color: black;
+	border-radius: 50%;
+	margin-top:2px;
+}
+
+.lineController > li:hover{
+	box-shadow: 0 0 6px #222;
+}
+
+.controller{
+	margin-top: 0;
+	right: 5px;
+	top:0;
+}
+
+.controller > li{
+	cursor: pointer;
+	display: inline-block;
+	opacity: 0.5;
+	margin: 0 0 0 0px;
+	width: 24px;
+	height: 24px;
+	background-repeat: no-repeat;
+}
+
+.controller > li:hover{
+	opacity: 1;
+}
+
+.controller > li:first-child{
+	background-image: url("./img/icon-back.png");
+	margin-left:0;
+}
+
+.controller > li:nth-child(2){
+	background-image: url("./img/icon-next.png");
+}
+
+.controller > li:last-child{
+	background-image: url("./img/icon-clear.png");
+}
+
+li.color-current{
+	box-shadow: 0 0 6px #222;
+}
+
+li.width-current{
+	box-shadow: 0 0 6px #222;
+}
 
 @keyframes cover {
 	from{opacity: 0;}

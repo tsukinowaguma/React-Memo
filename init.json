@@ -7,7 +7,8 @@
 			 	"nature":"work",
 			 	"time":"2017,2-1,0:00"
 			}, 
-		"visible":true
+		"visible":true,
+		"type":"markdown"
 	},
 	{
 		"info":
@@ -17,17 +18,19 @@
 				"nature":"study",
 				"time":"2017,2-1,0:01"
 			}, 
-		"visible":true
+		"visible":true,
+		"type":"markdown"
 	},
 	{
 		"info":
 			{
 				"title":"功能",
-				"context":"功能:\n\n* 1.笔记的增删改查\n* 2.时间的顺逆序\n* 3.使用localStorage进行本地储存\n* 4.对笔记的数量进行监控\n* 5.支持[markdown](http://www.appinn.com/markdown/)语法\n* 6.响应式布局适配移动端", 
+				"context":"功能:\n\n* 1.笔记的增删改查\n* 2.时间的顺逆序\n* 3.使用localStorage进行本地储存\n* 4.对笔记的数量进行监控\n* 5.支持[markdown](http://www.appinn.com/markdown/)语法\n* 6.响应式布局适配移动端\n* 7.涂鸦功能", 
 				"nature":"study",
 				"time":"2017,2-19,10:02"
 			}, 
-		"visible":true
+		"visible":true,
+		"type":"markdown"
 	},
 	{
 		"info":
@@ -37,6 +40,29 @@
 				"nature":"life",
 				"time":"2017,2-19,10:02"
 			}, 
-		"visible":true
-	}	
+		"visible":true,
+		"type":"markdown"
+	},
+	{
+		"info":
+			{
+				"title":"关于涂鸦功能",
+				"context":"弄了很久..写了个组件发现接口很难写。  \n因为画布的保存和取消并不是画布的一部分而是编辑器的按钮，大概重写了三四遍，发现还是用DOM操作获取，通过原型创建对象，就轻易的拿到了接口，然后才完成了。  \n然后移动端的画布距离窗口的偏差弄了很多办法都没弄上(有知道的麻烦跟我说下为何canvas.offsetLeft=0,因为父元素relative？)，差点用上JQ,最后用了个比较取巧的方法把这个获取到了..", 
+				"nature":"work",
+				"time":"2017,3-1,10:55"
+			}, 
+		"visible":true,
+		"type":"markdown"
+	},
+	{
+		"info":
+			{
+				"title":"涂鸦",
+				"context":"./img/saber-alter.jpg", 
+				"nature":"work",
+				"time":"2017,3-1,10:55"
+			}, 
+		"visible":true,
+		"type":"paint"
+	}
 ]
